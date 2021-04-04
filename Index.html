@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Evaluación módulo 4</title>
+    <link rel="stylesheet" 
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css "
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="estilo1.css">
+</head>
+<body>
+    <header class="text-center text-light pt-2">
+        <div class="header pt-4">
+            <h1 class="display-1font-weight-boldmy-3">Evaluación Vue</h1>
+        </div>
+    </header>
+<div class="contenedor">
+    <div id="app" class="container">
+        <section class="form">
+            <form action="" class="text-center">
+                <input v-model="nombre" @keyup.enter="crearElemento" type="text" class="form-control" placeholder="Nombre">
+                <input v-model="edad" @keyup.enter="crearElemento" type="number" name="edad" placeholder="Edad" class="form-control"><hr>
+                <input @click="crearElemento" type="button" value="Añadir" class="btn btn-info">
+            </form>
+        </section>
+        <section class="data">
+            <caption>Elementos</caption>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Edad</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(elemento, index) in elementos">
+                        <td>{{ elemento.id }}</td>
+                        <td>
+                            <span v-if="formActualizar && idActualizar == index">
+                                <input v-model="nombreActualizar" type="text" class="form-control">
+                            </span>
+                            <span v-else>
+                                {{ elemento.nombre }}
+                            </span>
+                        </td>
+                        <td>
+                            <span v-if="formActualizar && idActualizar == index">
+                                <input v-model="edadActualizar" type="text" class="form-control">
+                            </span>
+                            <span v-else>
+                                {{ elemento.edad }}
+                            </span>
+                        </td>
+                        <td>
+                            <span v-if="formActualizar && idActualizar == index">
+                                <button @click="guardarActualizacion(index)" class="btn btn-info">Guardar</button>
+                            </span>
+                            <span v-else>
+                                <button @click="verFormActualizar(index)" class="btn">Actualizar</button>
+                                <button @click="borrarElemento(index)" class="btn">Borrar</button>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+    <script src="vue.js"></script>
+</script>
+</body>
+</html>
